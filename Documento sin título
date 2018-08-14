@@ -1,0 +1,61 @@
+/**
+ * Save humans, destroy zombies!
+ **/
+
+var mejor = 16000*2;
+// game loop
+while (true) {
+    var inputs = readline().split(' ');
+    var x = parseInt(inputs[0]);
+    var y = parseInt(inputs[1]);
+    var humanCount = parseInt(readline());
+    var humano = new Array();
+    for (var i = 0; i < humanCount; i++) {
+        var inputs = readline().split(' ');
+        var humanId = parseInt(inputs[0]);
+        var humanX = parseInt(inputs[1]);
+        var humanY = parseInt(inputs[2]);
+        var cuenta = Math.abs(humanX - x) + Math.abs(humanY - y) 
+        /*if(mejor > cuenta)
+            {mejor = cuenta;
+            var posProxX = humanX;
+            var posProxY = humanY;
+            }*/
+            
+        humano[i] = [cuenta, humanX,humanY, humanId];    
+    }
+    
+    
+    var zombieDistancia = new Array();;
+    var zombie = new Array();;
+    var zombieCount = parseInt(readline());
+    for (var i = 0; i < zombieCount; i++) {
+        var inputs = readline().split(' ');
+        var zombieId = parseInt(inputs[0]);
+        var zombieX = parseInt(inputs[1]);
+        var zombieY = parseInt(inputs[2]);
+        var zombieXNext = parseInt(inputs[3]);
+        var zombieYNext = parseInt(inputs[4]);
+        
+        for (var j = 0; j < humanCount; j++) {
+         /*   var cuentaHumano = Math.abs(humano[j][1] - zombieXNext) + Math.abs(humano[j][2] - zombieYNext) 
+            zombieDistancia[j] = [cuentaHumano, humano[j][3]];
+        }
+        zombieDistancia.sort();
+        zombie[i]= [zombieDistancia,zombieXNext,zombieYNext];   
+        */
+        var cuentaHumano = Math.abs(humano[j][1] - zombieXNext) + Math.abs(humano[j][2] - zombieYNext) 
+            
+        if(cuentaHumano <= 400){
+            humano[j][1] = 16000;        
+            }
+        }
+    }
+    humano.sort();
+    
+    
+    // Write an action using print()
+    printErr(zombieX + ' ' + zombieY);
+
+    print(humano[0][1] + ' '+ humano[0][2] ); // Your destination coordinates
+}
